@@ -1,0 +1,9 @@
+node_modules
+backend/
+hiscode/
+uploads/
+frontend/node_modules
+*.log
+.env
+dist/
+build/
