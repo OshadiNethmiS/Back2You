@@ -1,0 +1,453 @@
+.al-root {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #F3F4F6;
+  color: #1F2937;
+  overflow-x: hidden;
+}
+
+/* Left Panel */
+.al-left-panel {
+  width: 45%;
+  background-color: #0F172A;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.al-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.al-logo-icon {
+  background-color: 'gold';
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+
+.al-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.al-illustration-container {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: 40px auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  overflow: visible;
+  aspect-ratio: 4 / 3;
+}
+
+.al-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+}
+
+/* Floating UI Chips */
+.al-chip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #0F172A;
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: float 4s ease-in-out infinite;
+}
+
+.al-chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.al-chip-dot.blue { background-color: #2563EB; }
+.al-chip-dot.red { background-color: #EF4444; }
+.al-chip-dot.green { background-color: #10B981; }
+
+.al-chip-matches {
+  top: 15%;
+  left: -20px;
+  animation-delay: 0s;
+}
+
+.al-chip-notifications {
+  top: 45%;
+  right: -25px;
+  animation-delay: 1.5s;
+}
+
+.al-chip-overview {
+  bottom: 10%;
+  left: 20px;
+  animation-delay: 0.7s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.al-left-text-container {
+  max-width: 460px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.al-left-heading {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+.al-left-subtext {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #94A3B8;
+}
+
+/* Right Panel */
+.al-right-panel {
+  width: 55%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+}
+
+.al-form-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.al-form-header {
+  margin-bottom: 32px;
+}
+
+.al-right-heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 8px;
+}
+
+.al-right-subtext {
+  font-size: 15px;
+  color: #6B7280;
+}
+
+.al-error-box {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.al-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.al-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.al-input-group label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.al-password-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.al-forgot-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563EB;
+  text-decoration: none;
+}
+
+.al-forgot-link:hover {
+  text-decoration: underline;
+}
+
+.al-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.al-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #9CA3AF;
+  pointer-events: none;
+}
+
+.al-input-wrapper input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: #F9FAFB;
+  color: #111827;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.al-input-wrapper input:focus {
+  border-color: #2563EB;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.al-eye-toggle {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.al-eye-toggle:hover {
+  color: #4B5563;
+}
+
+.al-checkbox-row {
+  margin-top: 4px;
+}
+
+/* Custom Checkbox Styling */
+.al-checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.al-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.al-checkmark {
+  height: 20px;
+  width: 20px;
+  background-color: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  margin-right: 10px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.al-checkbox-container:hover input ~ .al-checkmark {
+  border-color: #9CA3AF;
+}
+
+.al-checkbox-container input:checked ~ .al-checkmark {
+  background-color: #2563EB;
+  border-color: #2563EB;
+}
+
+.al-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.al-checkbox-container input:checked ~ .al-checkmark:after {
+  display: block;
+}
+
+.al-checkbox-container .al-checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.al-checkbox-label {
+  font-size: 14px;
+  color: #4B5563;
+  font-weight: 500;
+}
+
+.al-submit-btn {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.al-submit-btn:hover {
+  background-color: #1D4ED8;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+}
+
+.al-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.al-divider {
+  height: 1px;
+  background-color: #E5E7EB;
+  margin: 32px 0 24px 0;
+}
+
+.al-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.al-trouble-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #4B5563;
+}
+
+.al-help-icon {
+  color: #6B7280;
+}
+
+.al-support-link {
+  color: #2563EB;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.al-support-link:hover {
+  text-decoration: underline;
+}
+
+.al-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+.al-footer-links a {
+  color: #9CA3AF;
+  text-decoration: none;
+}
+
+.al-footer-links a:hover {
+  color: #4B5563;
+}
+
+.al-footer-bullet {
+  color: #D1D5DB;
+}
+
+.al-copyright {
+  margin-left: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .al-left-panel {
+    padding: 32px;
+  }
+  .al-illustration-container {
+    margin: 20px auto;
+  }
+  .al-chip-matches { left: -10px; }
+  .al-chip-notifications { right: -10px; }
+}
+
+@media (max-width: 900px) {
+  .al-root {
+    flex-direction: column;
+  }
+  .al-left-panel {
+    width: 100%;
+    min-height: auto;
+    padding: 40px 24px;
+  }
+  .al-illustration-container {
+    max-width: 320px;
+    margin: 30px auto;
+  }
+  .al-right-panel {
+    width: 100%;
+    padding: 40px 24px;
+  }
+  .al-copyright {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 4px;
+  }
+}
