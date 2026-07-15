@@ -86,7 +86,6 @@ function Dashboard() {
              backgroundColor: '#090924',
              padding: '10 5%',
              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-             height: '60px',
              boxShadow: '0 2px 12px rgba(15,23,42,0.18)',
              position: 'fixed',
              top: '0',
