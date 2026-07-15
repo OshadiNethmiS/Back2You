@@ -1,0 +1,8 @@
+ --card ekak--
+ <div className="hero-overlay" />
+
+      <div className="floating-badge">
+        <div style={{ fontSize: 28, marginBottom: 8 }}>📍</div>
+        <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>University of Peradeniya</div>
+        <div style={{ fontSize: 12, opacity: 0.7 }}>12 items found today</div>
+      </div>-
