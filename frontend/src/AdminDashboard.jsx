@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import TopNav from "./TopNav";
 import "./AdminDashboard.css";
 
 // Setup API Axios instance pointing to backend
@@ -39,8 +38,7 @@ export default function AdminDashboard() {
   const [notifications, setNotifications] = useState([]);
   const [unreadNotifCount, setUnreadNotifCount] = useState(0);
   const [searchGlobal, setSearchGlobal] = useState("");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false); 
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Login credentials states
   const [loginEmail, setLoginEmail] = useState("");
@@ -945,7 +943,7 @@ function PostsTab({ type, globalSearch }) {
 
   // Manual Post form
   const [postTitle, setPostTitle] = useState("");
-  const [postCategory, setPostCategory] = useState("Electronics");
+  const [postCategory] = useState("Electronics");
   const [postLocation, setPostLocation] = useState("");
   const [postDate, setPostDate] = useState("");
   const [postDesc, setPostDesc] = useState("");
@@ -1890,7 +1888,7 @@ function ClaimDetailModal({ claim, onClose, onDecision }) {
 function ReportsTab() {
   const [reportsData, setReportsData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [period, setPeriod] = useState("Week");
+  const [period] = useState("Week");
 
   useEffect(() => {
     fetchReports();
