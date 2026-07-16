@@ -6,6 +6,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.18.1",
+    "mongodb": "^7.5.0",
     "multer": "^2.1.1",
     "nodemailer": "^9.0.3",
     "react": "^18.2.0",
