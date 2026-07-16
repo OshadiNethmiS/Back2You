@@ -5,6 +5,7 @@ import { Mail, Lock, Eye, EyeOff, HelpCircle, ArrowRight } from 'lucide-react';
 import adminPreview from './images/admin_preview.jpg';
 import './AdminLogin.css';
 import log from './images/Logo.png';
+import { API_BASE } from './config';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ export default function AdminLogin() {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

@@ -3,10 +3,11 @@ import axios from "axios";
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./AdminDashboard.css";
+import { API_BASE, UPLOADS_BASE } from "./config";
 
 // Setup API Axios instance pointing to backend
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000/api",
+  baseURL: API_BASE,
   withCredentials: true,
 });
 
@@ -82,7 +83,7 @@ export default function AdminDashboard() {
     }
     setLoginLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${API_BASE}/auth/login`, {
         email: loginEmail,
         password: loginPassword,
       });
@@ -91,7 +92,7 @@ export default function AdminDashboard() {
       // Temporarily store token to verify admin profile
       localStorage.setItem("token", token);
 
-      const profileRes = await axios.get("http://localhost:5000/api/auth/profile", {
+      const profileRes = await axios.get(`${API_BASE}/auth/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -704,7 +705,7 @@ function OverviewTab({ globalSearch, setActiveTab }) {
                       <td>
                         <div className="item-cell">
                           <img
-                            src={item.image ? `http://localhost:5000/uploads/${item.image}` : "https://via.placeholder.com/40"}
+                            src={item.image ? `${UPLOADS_BASE}/${item.image}` : "https://via.placeholder.com/40"}
                             alt={item.title}
                             className="item-thumbnail"
                           />
@@ -1305,7 +1306,7 @@ function PostsTab({ type, globalSearch }) {
                       <tr key={post._id}>
                         <td>
                           <img
-                            src={post.image ? `http://localhost:5000/uploads/${post.image}` : "https://via.placeholder.com/50"}
+                            src={post.image ? `${UPLOADS_BASE}/${post.image}` : "https://via.placeholder.com/50"}
                             alt={post.title}
                             className="item-thumbnail large"
                           />
@@ -1716,7 +1717,7 @@ function ClaimsTab() {
                       <td>
                         <div className="item-cell">
                           <img
-                            src={item.image ? `http://localhost:5000/uploads/${item.image}` : "https://via.placeholder.com/40"}
+                            src={item.image ? `${UPLOADS_BASE}/${item.image}` : "https://via.placeholder.com/40"}
                             alt={item.title}
                             className="item-thumbnail"
                           />
@@ -1813,7 +1814,7 @@ function ClaimDetailModal({ claim, onClose, onDecision }) {
           {/* Item Summary */}
           <div className="claim-detail-item-row">
             <img
-              src={item.image ? `http://localhost:5000/uploads/${item.image}` : "https://via.placeholder.com/70"}
+              src={item.image ? `${UPLOADS_BASE}/${item.image}` : "https://via.placeholder.com/70"}
               alt={item.title}
               className="claim-detail-img"
             />

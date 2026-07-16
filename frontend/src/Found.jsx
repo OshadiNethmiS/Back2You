@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import log from './images/Logo.png';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 
 function Found() {
@@ -28,7 +29,7 @@ function Found() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch('http://localhost:5000/api/items?type=found');
+        const res = await fetch(`${API_BASE}/items?type=found`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load items');
         setItems(data);
@@ -156,7 +157,7 @@ function Found() {
                 >
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={item.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
+                      src={item.image ? `${UPLOADS_BASE}/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
                       alt={item.title}
                       className="home-item-img"
                     />

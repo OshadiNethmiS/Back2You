@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_BASE } from './config';
 
 
 function PostFound() {
@@ -65,7 +66,7 @@ function PostFound() {
       formData.append('description', description);
       if (image) formData.append('image', image);
 
-      const res = await fetch('http://localhost:5000/api/items', {
+      const res = await fetch(`${API_BASE}/items`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData,

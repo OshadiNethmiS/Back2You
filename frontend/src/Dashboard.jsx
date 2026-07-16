@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 
 function Dashboard() {
@@ -34,7 +35,7 @@ function Dashboard() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch(`http://localhost:5000/api/items?type=${activeTab}`, {
+        const res = await fetch(`${API_BASE}/items?type=${activeTab}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -250,7 +251,7 @@ function Dashboard() {
                 >
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={item.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
+                      src={item.image ? `${UPLOADS_BASE}/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
                       alt={item.title}
                       style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
                     />

@@ -4,6 +4,7 @@ import { useAuth } from './checklogin';
 import './Home.css';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('lost');
@@ -32,7 +33,7 @@ function Home() {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch(`http://localhost:5000/api/items?type=${activeTab}`);
+        const res = await fetch(`${API_BASE}/items?type=${activeTab}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to load items');
         setItems(data);
@@ -169,7 +170,7 @@ function Home() {
                 <div key={item._id} className="home-item-card" onClick={() => navigate(`/item/${item._id}`)} style={{ cursor: 'pointer' }}>
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={item.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
+                      src={item.image ? `${UPLOADS_BASE}/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}
                       alt={item.title}
                       className="home-item-img"
                     />

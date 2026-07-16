@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import log from './images/Logo.png';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 function ItemDetail() {
   const { id } = useParams();
@@ -36,13 +37,13 @@ function ItemDetail() {
       try {
         setLoading(true);
         // Fetch Item
-        const itemRes = await fetch(`http://localhost:5000/api/items/${id}`);
+        const itemRes = await fetch(`${API_BASE}/items/${id}`);
         const itemData = await itemRes.json();
         if (!itemRes.ok) throw new Error(itemData.message || 'Failed to load item');
         setItem(itemData);
 
         // Fetch Comments
-        const commentsRes = await fetch(`http://localhost:5000/api/items/${id}/comments`);
+        const commentsRes = await fetch(`${API_BASE}/items/${id}/comments`);
         const commentsData = await commentsRes.json();
         if (commentsRes.ok) {
           setComments(commentsData);
@@ -63,7 +64,7 @@ function ItemDetail() {
     setCommentSuccess('');
 
     try {
-      const res = await fetch(`http://localhost:5000/api/items/${id}/comments`, {
+      const res = await fetch(`${API_BASE}/items/${id}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -84,7 +85,7 @@ function ItemDetail() {
       setGuestComment('');
 
       // Refresh comments list
-      const commentsRes = await fetch(`http://localhost:5000/api/items/${id}/comments`);
+      const commentsRes = await fetch(`${API_BASE}/items/${id}/comments`);
       const commentsData = await commentsRes.json();
       if (commentsRes.ok) {
         setComments(commentsData);
@@ -124,7 +125,7 @@ Please review and verify this claim.`
     setClaiming(true);
     setClaimError('');
     try {
-      const res = await fetch('http://localhost:5000/api/claims', {
+      const res = await fetch(`${API_BASE}/claims`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -223,7 +224,7 @@ Please review and verify this claim.`
               Reported
             </div>
             <img
-              src={item?.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/600x400?text=No+Image'}
+              src={item?.image ? `${UPLOADS_BASE}/${item.image}` : 'https://via.placeholder.com/600x400?text=No+Image'}
               alt={item?.title}
               style={{ width: '100%', height: '480px', objectFit: 'cover', display: 'block' }}
             />

@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from './checklogin';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_BASE } from './config';
 
 // 🆕 Validation helpers
 // Phone: exactly 10 digits (e.g. 0712345678)
@@ -35,7 +36,7 @@ function Register() {
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -98,7 +99,7 @@ function Register() {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // 🆕 send the extra profile fields along with name/email/password

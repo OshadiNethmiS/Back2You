@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation, Link } from 'react-router-dom';
 import log from './images/Logo.png';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 function PostItem() {
   const { id } = useParams();          // present only when editing an existing post
@@ -47,7 +48,7 @@ function PostItem() {
       setError('');
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:5000/api/items/${id}`, {
+        const res = await fetch(`${API_BASE}/items/${id}`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
           cache: 'no-store', // avoid the browser serving a stale cached 404
         });
@@ -70,7 +71,7 @@ function PostItem() {
         setDate(data.date ? data.date.slice(0, 10) : '');
         setDescription(data.description || '');
         if (data.image) {
-          setImagePreview(`http://localhost:5000/uploads/${data.image}`);
+          setImagePreview(`${UPLOADS_BASE}/${data.image}`);
         }
       } catch (err) {
         setError(err.message || 'Failed to load item');
@@ -115,8 +116,8 @@ function PostItem() {
 
       // Edit mode -> PUT to update the existing item. Create mode -> POST as before.
       const url = isEditMode
-        ? `http://localhost:5000/api/items/${id}`
-        : 'http://localhost:5000/api/items';
+        ? `${API_BASE}/items/${id}`
+        : `${API_BASE}/items`;
       const method = isEditMode ? 'PUT' : 'POST';
 
       const res = await fetch(url, {

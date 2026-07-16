@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_BASE, UPLOADS_BASE } from './config';
 
 /* =========================================================
    BACK2YOU — colors matched to the screenshot / theme
@@ -39,7 +40,6 @@ const STATUS_STYLE = {
 const DEFAULT_STATUS_STYLE = { bg: '#f1f5f9', color: C.gray, icon: '•' };
 
 // ⚠️ ADJUST THESE TO MATCH YOUR BACKEND ROUTES ⚠️
-const API_BASE = 'http://localhost:5000/api';
 const MY_POSTS_ENDPOINT = `${API_BASE}/items/my`; // GET: items belonging to the logged-in user
 const UPDATE_STATUS_ENDPOINT = (id) => `${API_BASE}/items/${id}/status`;
 const DELETE_ITEM_ENDPOINT = (id) => `${API_BASE}/items/${id}`; // DELETE
@@ -568,7 +568,7 @@ function UserAcc() {
                           <div style={{ width: '44px', height: '44px', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                             {post.image ? (
                               <img
-                                src={`http://localhost:5000/uploads/${post.image}`}
+                                src={`${UPLOADS_BASE}/${post.image}`}
                                 alt={post.title}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 onError={(e) => {
