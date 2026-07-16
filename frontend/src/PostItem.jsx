@@ -465,7 +465,7 @@ function PostItem() {
                 <input
                   type="date"
                   value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  onChange={(e) => setDate(e.target.value)}g
                   style={{ ...inputStyle, backgroundColor: bg }}
                 />
               </div>

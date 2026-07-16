@@ -10,13 +10,13 @@ const seedAdmin = async () => {
     await mongoose.connect(mongoUri);
     console.log('✅ Connected to MongoDB to seed admin user');
 
-    const adminEmail = 'admin@university.edu';
+    const adminEmail = 'oshadhinethmi7@gmail.com';
     const existingAdmin = await User.findOne({ email: adminEmail });
 
     if (existingAdmin) {
       console.log('ℹ️ Admin user already exists:', adminEmail);
     } else {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
+      const hashedPassword = await bcrypt.hash('admin1234', 10);
       await User.create({
         name: 'Admin User',
         email: adminEmail,
@@ -26,8 +26,8 @@ const seedAdmin = async () => {
       });
       console.log('✅ Admin user created successfully!');
       console.log('Credentials:');
-      console.log('  Email: admin@university.edu');
-      console.log('  Password: admin123');
+      console.log('  Email: oshadhinethmi7@gmail.com');
+      console.log('  Password: admin1234');
     }
   } catch (err) {
     console.error('❌ Seeding error:', err.message);
