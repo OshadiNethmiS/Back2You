@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import log from './images/Logo.png';
 
 
 function Found() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('found');
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -144,11 +145,13 @@ function Found() {
                   key={item._id}
                   onMouseEnter={() => setHoveredCard(item._id)}
                   onMouseLeave={() => setHoveredCard(null)}
+                  onClick={() => navigate(`/item/${item._id}`)}
                   className="home-item-card"
                   style={{
                     boxShadow: hoveredCard === item._id ? '0 8px 30px rgba(37,99,235,0.18)' : '0 1px 3px rgba(0,0,0,0.08)',
                     transform: hoveredCard === item._id ? 'translateY(-4px)' : 'translateY(0)',
                     borderColor: hoveredCard === item._id ? 'var(--secondary)' : 'transparent',
+                    cursor: 'pointer'
                   }}
                 >
                   <div style={{ position: 'relative' }}>

@@ -166,7 +166,7 @@ function Home() {
           {!loading && !error && (
             <div className="home-items-grid">
               {filteredItems.length > 0 ? filteredItems.map(item => (
-                <div key={item._id} className="home-item-card">
+                <div key={item._id} className="home-item-card" onClick={() => navigate(`/item/${item._id}`)} style={{ cursor: 'pointer' }}>
                   <div style={{ position: 'relative' }}>
                     <img
                       src={item.image ? `http://localhost:5000/uploads/${item.image}` : 'https://via.placeholder.com/400x180?text=No+Image'}

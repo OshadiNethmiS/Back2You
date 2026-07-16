@@ -5,6 +5,7 @@ const path = require('path');
 
 const Item = require('../models/Item');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 const AdminNotification = require('../models/AdminNotification');
 const { authMiddleware } = require('../middleware/authMiddleware');
 const { findMatchesForItem } = require('../services/matchService');
@@ -172,6 +173,50 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     res.json({ message: 'Item deleted!' });
   } catch (err) {
     console.error('❌ DELETE ITEM ERROR:', err.message);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// POST /api/items/:id/comments - Add a comment (guest/user)
+router.post('/:id/comments', async (req, res) => {
+  try {
+    const { email, phone, content } = req.body;
+    if (!email || !content) {
+      return res.status(400).json({ message: 'Email and comment content are required' });
+    }
+
+    const item = await Item.findById(req.params.id);
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    const comment = await Comment.create({
+      itemId: req.params.id,
+      email,
+      phone,
+      content
+    });
+
+    // Create an admin notification for the guest comment
+    await AdminNotification.create({
+      message: `Guest comment on "${item.title}" by ${email}: "${content.substring(0, 30)}${content.length > 30 ? '...' : ''}"`,
+      type: 'new_report',
+      referenceId: comment._id
+    });
+
+    res.json({ message: 'Comment submitted successfully!', comment });
+  } catch (err) {
+    console.error('❌ COMMENT ERROR:', err.message);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// GET /api/items/:id/comments - Get comments for an item
+router.get('/:id/comments', async (req, res) => {
+  try {
+    const comments = await Comment.find({ itemId: req.params.id }).sort({ createdAt: -1 });
+    res.json(comments);
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
