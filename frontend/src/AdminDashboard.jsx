@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./AdminDashboard.css";
 import { API_BASE, UPLOADS_BASE } from "./config";
 
-// Setup API Axios instance pointing to backend ggg
+// Setup API Axios instance pointing to backend
 const API = axios.create({
   baseURL: API_BASE,
   withCredentials: true,
@@ -13,7 +13,7 @@ const API = axios.create({
 
 // Interceptor to attach JWT token
 API.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
 
   // Authenticate Admin on load
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       checkAdminStatus();
     }
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
 
       const token = res.data.token;
       // Temporarily store token to verify admin profile
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", token);
 
       const profileRes = await axios.get(`${API_BASE}/auth/profile`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -104,11 +104,11 @@ export default function AdminDashboard() {
         setLoginEmail("");
         fetchNotifications();
       } else {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         setLoginError("Access Denied: You do not have administrator permissions.");
       }
     } catch (err) {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       setLoginError(err.response?.data?.message || "Invalid credentials. Try again.");
     } finally {
       setLoginLoading(false);
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     setIsAdminLoggedIn(false);
     setAdminUser(null);
     setActiveTab("overview");
@@ -4383,3 +4383,4 @@ function Styles() {
     `}</style>
   );
 }
+{/*THe END */}
