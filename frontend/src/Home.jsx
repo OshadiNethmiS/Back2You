@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from './checklogin';
 import './Home.css';
 import log from './images/Logo.png';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { API_BASE, UPLOADS_BASE } from './config';
+import NotificationBell from './NotificationBell';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('lost');
@@ -14,12 +14,13 @@ function Home() {
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { user } = useAuth();
+  const token = sessionStorage.getItem('token');
+  const isLoggedIn = token && token !== 'undefined' && token !== 'null';
   const navigate = useNavigate();
   
 
   const handlePostItem = () => {
-    if (user) {
+    if (isLoggedIn) {
       navigate('/post-item');
     } else {
       navigate('/register', { state: { message: 'Please register first to post an item.' } });
@@ -96,9 +97,18 @@ function Home() {
             />
         </div>
 
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-          <button className="home-nav-btn">Log In / Register</button>
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <NotificationBell />
+          {isLoggedIn ? (
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <button className="home-nav-btn" style={{ margin: 0 }}>Dashboard -&gt;</button>
+            </Link>
+          ) : (
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <button className="home-nav-btn" style={{ margin: 0 }}>Log In / Register</button>
+            </Link>
+          )}
+        </div>
       </nav>
 
       {/* ===== HERO ===== */}
